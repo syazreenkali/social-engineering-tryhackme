@@ -6,8 +6,8 @@ Write-up documentation for Social Engineering exercises completed on TryHackMe a
 - Platform: TryHackMe
 - Topic: Social Engineering
 - Assessment Type: Practical Write-up
-Exercise 1: ParrotPost
-Email Header Analysis
+## Exercise 1: ParrotPost
+## Email Header Analysis
 
 Suspicious IP Address: During analysis of the email, an IP address 109.205.120.0 was identified. This IP should be investigated on VirusTotal to check for any malicious reports or associations.
 
@@ -17,17 +17,17 @@ Malicious Attachment Indication: Another header field shows an attached HTML fil
 Content-Disposition: attachment; filename="ParrotPostACTIONREQUIRED.htm"
 The presence of an HTML attachment named "ParrotPostACTIONREQUIRED.htm" is suspicious. Phishing emails commonly include HTML attachments that lead to fake login forms or malicious content when opened.
 
-Malicious HTML Attachment Analysis
+## Malicious HTML Attachment Analysis
 
 Upon opening the attached file ParrotPostACTIONREQUIRED.htm, the source code appears obfuscated. Notably, the code includes a usage of JavaScript's atob() function on a large string (e.g., atob(b64)). The function atob() is a built-in JavaScript function that decodes a Base64-encoded string into its original text or binary data. This indicates that the HTML file contains data (likely another script or payload) encoded in Base64 to hide its content.
 
 To analyze the hidden content, the Base64 string from the HTML file was extracted and decoded using a tool like CyberChef. After decoding, we obtained additional code from the attachment. This decoded content was then saved to a text file for further inspection.
 
-CSS Obfuscation
+## CSS Obfuscation
 
 The content retrieved from decoding the HTML attachment was still not immediately readable. It contained what looked like heavily obfuscated CSS code. A CSS obfuscator is a tool or technique that makes CSS code extremely difficult to read and understand by altering its structure and naming. This obfuscation is intended to hinder analysis, as it creates significant challenges for anyone trying to reverse-engineer the code. The presence of obfuscated CSS suggests that the phishing page is trying to hide its styling or possibly encode data within styles, adding another layer of complexity to the analysis.
 
-Phishing Page Behavior Analysis
+## Phishing Page Behavior Analysis
 
 To understand the behavior of the phishing page (the content of the HTML attachment) and see how it handles user input, the following steps were carried out in a safe environment:
 
@@ -41,25 +41,25 @@ Examine the Response – In the Developer Tools, check the Response of the netwo
 
 These steps help reveal what the phishing page does when a victim enters their credentials, and where that data is being sent or stored.
 
-Extracting Captured Credentials
+## Extracting Captured Credentials
 
 The network analysis showed that upon submission, the credentials are sent to the attacker's server and stored in a file. Specifically, the response indicated that the stolen credentials are being saved to a creds.txt on the server. Using the information from the response, we can directly visit the URL http://evilparrot.thm:8080/creds.txt to confirm this. Accessing this path on the attacker’s server will display the contents of the creds.txt file. This file contains the captured login credentials and, in the context of the TryHackMe challenge, likely includes a flag or proof of exploitation.
 
-Exercise 2: Merry Clickmas
+## Exercise 2: Merry Clickmas
 
-Overview
+## Overview
 The Merry Clickmas challenge focuses on identifying phishing techniques used in seasonal or holiday-themed emails. Attackers often exploit festive themes to lower user suspicion and increase click-through rates.
 
-Phishing Indicators
+## Phishing Indicators
 - Urgent call-to-action related to a holiday reward
 - Suspicious sender address
 - Embedded links redirecting to non-legitimate domains
 - Social engineering through emotional manipulation
 
-Analysis Summary
+## Analysis Summary
 In this exercise, the phishing email attempted to trick users into clicking a malicious link disguised as a Christmas-related promotion. The link redirected to a fake page designed to harvest user credentials.
 
-Defensive Measures
+## Defensive Measures
 - Verify sender email addresses
 - Avoid clicking links in unsolicited holiday emails
 - Use email filtering and phishing detection tools
