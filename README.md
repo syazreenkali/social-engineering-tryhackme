@@ -2,7 +2,7 @@
 Write-up documentation for Social Engineering exercises completed on TryHackMe as part of cybersecurity assessment.
 # Social Engineering – TryHackMe Write-up
 
-## Syazreen Baqlis 52215124322
+## Syazreen Balqis 52215124322
 - Platform: TryHackMe
 - Topic: Social Engineering
 - Assessment Type: Practical Write-up
